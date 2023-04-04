@@ -37,54 +37,79 @@ const days = [
     "Sabado"
 ]
 
-let allTask = [];
+let allTask = document.querySelectorAll("li");
 
 function addTaskToList() {
 
     if(task.value !== "")
     {
-        console.log(`${task.value}`)
         generateTask();
-
-        toggleClassLi();
     }
 
 }
 
 function generateTask() {
     ulSection.innerHTML += loadInformation()
-    allTask = document.querySelectorAll("li");
     task.value = "";
+    updateTaskArray();
+}
+
+function updateTaskArray() {
+    allTask = document.querySelectorAll("li").forEach(element => 
+        {
+            element.addEventListener("click", handleSelectTask);
+        });
 }
 
 function loadInformation() {
     return `<li class="task">
                 <p>${task.value}</p>
+                <button><img src="./Iconos/Basura_Cerrada.svg" alt="" /></button>
             </li>`;
 }
 
-function toggleClassLi() {
+function toggleClassLi(task) {
+    task.classList.toggle("done");
+}
 
-    console.log(allTask);
-    // for(const it in allTask) {
-    //     allTask[it].classList.add("done");
+function handleSelectTask(e) {
+    e.stopPropagation();
+    let task = e.target.parentElement;
+
+    toggleClassLi(task)
+}
+
+function sortTaskFunction() 
+{
+    console.log("hola");
+
+    // if(allTask.length !== 0)
+    // {
+    //     console.log("No estamos vacios!");
+    // }
+    // else
+    // {
+    //     console.log("Estamos vacios!")
     // }
 }
 
 function getDate() {
     const d = new Date();
-    // d.getDate();
     const dateNumber = document.querySelector("#dateNumber");
     dateNumber.textContent = d.getDate();
+    
     const month = document.querySelector("#month");
     month.textContent = months[d.getMonth()];
+
     const year = document.querySelector("#year");
     year.textContent = d.getFullYear();
+
     const dateDay = document.querySelector("#dateDay");
     dateDay.textContent = days[d.getDay()];
 }
 
-
 getDate();
 
 addTaskButton.addEventListener("click", addTaskToList);
+
+sortTaskButton.addEventListener("click", sortTaskFunction)

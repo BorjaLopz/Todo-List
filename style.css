@@ -13,8 +13,8 @@ body {
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
     /* COLORES */
-    --primary: #277fe4;
-    --diabled: #e7e7e7;
+    --primary: rgb(39, 127, 228);
+    --diabled: rgb(231, 231, 231);
 }
 
 #mainSection{
@@ -33,10 +33,34 @@ ul {
 
 li {
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.452);
+    display: grid;
+    grid-template-columns: 90% 1fr;
 }
 
 li > p {
     margin: 0.5rem;
+    overflow-x: hidden;
+    width: 90%;
+}
+li > button {
+    height: 100%;
+    justify-content: center;
+    align-self: center;
+
+    cursor: pointer;
+    border-radius: 25%;
+    border: none;
+    /* background: ; */
+    background-image: url(./Iconos/Basura_Cerrada.svg) no-repeat;
+}
+
+li > button > img {
+    height: 100%;
+    /* width: 100%; */
+}
+
+li > button:hover {
+    background-image: url(./Iconos/Basura_Abierta.svg) no-repeat;
 }
 
 #dateSection {
@@ -101,13 +125,21 @@ li > p {
     border-radius: 0.8rem;
     background-color: var(--primary);
     color: white;
-    cursor: pointer;
+    cursor:grab;
+}
+
+.task button {
+    visibility: hidden;
 }
 
 .done {
     background-color: var(--diabled);
     color: black;
     text-decoration: line-through;
+}
+
+.done button {
+    visibility: visible;
 }
 
 #addTask {
@@ -161,8 +193,12 @@ img {
     background-color: rgb(93, 233, 214);
 }
 
-li:hover {
+li:not(.done):hover {
     background-color: #3b88e0;
     transform: scale(1.01);
+}
+
+li.done:hover {
+    background-color: rgb(238, 238, 238);
 }
 
