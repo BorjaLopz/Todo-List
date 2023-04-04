@@ -74,9 +74,14 @@ function toggleClassLi(task) {
 
 function handleSelectTask(e) {
     e.stopPropagation();
-    let task = e.target.parentElement;
+    if(e.target.parentElement.nodeName.toLowerCase() !== "ul")
+    {
+        // console.log("estamos en el ul")
+        let task = e.target.parentElement;
+        toggleClassLi(task)
+    }
 
-    toggleClassLi(task)
+
 }
 
 function sortTaskFunction() 
