@@ -23,6 +23,7 @@ body {
     width: 350px;
     padding-bottom: 1rem;
     border-radius: 0.25rem;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.452);
 }
 
 ul {
@@ -30,11 +31,69 @@ ul {
     list-style: none;
 }
 
+li {
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.452);
+}
+
 li > p {
     margin: 0.5rem;
 }
 
-#dateSection
+#dateSection {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+#dateMonthYear {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#dateNumber {
+    display: flex;
+    /* background-color: red; */
+    justify-content: right;
+    align-items: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+#MonthYear {
+    display: flex;
+    flex-direction: column;
+}
+
+#month, #year {
+    display: flex;
+    height: 50%;
+}
+
+#month {
+    justify-content: center;
+    align-items: end;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+#year {
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: lighter;
+    letter-spacing: -1px;
+}
+
+#dateDay {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
 
 .task {
     padding: 0.25rem;
@@ -49,5 +108,61 @@ li > p {
     background-color: var(--diabled);
     color: black;
     text-decoration: line-through;
+}
+
+#addTask {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+input {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    /* border: 2px solid black; */
+    border: none;
+    background-color: rgb(231, 231, 231);
+    color: black;
+    /* font-weight: bold; */
+    width: 175px;
+}
+
+#addTaskButton {
+    width: 2rem;
+    border-radius: 50%;
+    background-color: rgb(231, 231, 231);
+    border: none;
+    cursor: pointer;
+}
+
+img {
+    width: 50%;
+}
+
+#sortTask {
+    width: 75px;
+    border-radius: 0.25rem;
+    border: none;
+    background-color: rgb(63, 211, 191);
+    color: white;
+    cursor: pointer;
+}
+
+#addTaskButton:hover, 
+#sortTask:hover {
+    transform: scale(1.01);
+}
+
+#addTaskButton:hover {
+    background-color: rgb(238, 238, 238);
+}
+
+#sortTask:hover {
+    background-color: rgb(93, 233, 214);
+}
+
+li:hover {
+    background-color: #3b88e0;
+    transform: scale(1.01);
 }
 
