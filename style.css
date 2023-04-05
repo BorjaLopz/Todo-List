@@ -125,7 +125,7 @@ li > button:hover {
     border-radius: 0.8rem;
     background-color: var(--primary);
     color: white;
-    cursor:grab;
+    /* cursor:grab; */
 }
 
 .task button {
@@ -200,5 +200,6 @@ li:not(.done):hover {
 
 li.done:hover {
     background-color: rgb(238, 238, 238);
+    transform: scale(1.01);
 }
 

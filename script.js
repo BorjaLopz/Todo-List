@@ -38,6 +38,7 @@ const days = [
 ]
 
 let allTask = document.querySelectorAll("li");
+let allTaskDeleteButton;
 
 function addTaskToList() {
 
@@ -55,10 +56,30 @@ function generateTask() {
 }
 
 function updateTaskArray() {
-    allTask = document.querySelectorAll("li").forEach(element => 
+    allTask = document.querySelectorAll("li");
+
+    allTask.forEach(element => 
         {
             element.addEventListener("click", handleSelectTask);
         });
+}
+
+function addEventListenerEveryButton() {
+    allTaskDeleteButton = document.querySelectorAll("li button");
+
+    allTaskDeleteButton.forEach(element =>
+        {
+            element.addEventListener("click", handleDeleteTask);
+        })
+}
+
+function handleDeleteTask(e){
+    e.stopPropagation();
+
+    if(e.target.parentElement.nodeName.toLowerCase() === "button")
+    {
+        e.target.parentElement.parentElement.remove();  //Llamamos al parentElement 2 veces, ya que "pulsamos en la imagen", el padre directo seria el botón, y el padre será el li. Y queremos eliminar cada elemento li cada vez que pulsemos ahi. 
+    }
 }
 
 function loadInformation() {
@@ -70,32 +91,56 @@ function loadInformation() {
 
 function toggleClassLi(task) {
     task.classList.toggle("done");
+    deleteSelectedTask();
 }
 
 function handleSelectTask(e) {
     e.stopPropagation();
-    if(e.target.parentElement.nodeName.toLowerCase() !== "ul")
+    if(e.target.parentElement.nodeName.toLowerCase() === "li")
     {
-        // console.log("estamos en el ul")
         let task = e.target.parentElement;
         toggleClassLi(task)
     }
+}
 
+function deleteSelectedTask(e)
+{
+    allTaskDeleteButton = document.querySelectorAll("li button");
+    addEventListenerEveryButton();
 
 }
 
 function sortTaskFunction() 
 {
-    console.log("hola");
+    if(allTask.length !== 0)
+    {
+        for(const it of allTask)
+        {
 
-    // if(allTask.length !== 0)
-    // {
-    //     console.log("No estamos vacios!");
-    // }
-    // else
-    // {
-    //     console.log("Estamos vacios!")
-    // }
+            console.log(it.classList.contains("done")); //Comprobamos si tiene añadida la clase "done"
+            if(it.classList.contains("done"))
+            {
+                console.log(it, "te iras para abajo maldita");
+                allTask.sort(sortTaskDoneUndone);
+            }
+        }
+    }
+}
+
+function sortTaskDoneUndone(task1, task2)
+{
+    if(task1.classList.contains("done") && !task2.classList.contains("done"))
+    {
+        return 1;
+    }
+    else if(!task1.classList.contains("done") && task2.classList.contains("done"))
+    {
+        return -1;
+    }
+    else 
+    {
+        return 0;
+    }
 }
 
 function getDate() {
